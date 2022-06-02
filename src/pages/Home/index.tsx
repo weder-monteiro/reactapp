@@ -26,11 +26,13 @@ export function Home() {
   };
 
   useEffect(() => {
-    fetch('https://api.github.com/users/weder-monteiro')
-    .then(response => response.json())
-    .then(data => {
+    async function fecthData() {
+      const response = await fetch('https://api.github.com/users/weder-monteiro')
+      const data = await response.json();
       setUser({name: data.name, avatar: data.avatar_url});
-    })
+    }
+
+    fecthData();
   }, []);
 
   return (
